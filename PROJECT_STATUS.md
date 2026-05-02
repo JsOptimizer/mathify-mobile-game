@@ -4,7 +4,7 @@
 > Source of truth for milestones: [planned.md](planned.md). Source of truth for completed history: [CHANGELOG.md](CHANGELOG.md).
 
 **Last updated:** 2026-05-02
-**Current phase:** Phase 1 — Foundation (in progress, ~29% complete)
+**Current phase:** Phase 1 — Foundation (in progress, ~33% complete)
 **Overall MVP progress:** ~11% (9 / 80 tasks complete)
 **Next release target:** v1.0.0 — App Store + Play Store (end of Phase 4)
 **Active blockers:** None
@@ -16,7 +16,7 @@
 | Phase | Focus | Status | Progress |
 |---|---|---|---|
 | **0** | Project bootstrap (pre-MVP scaffold) | ✅ Complete | 100% |
-| **1** | Foundation — deps, theme, locales, skeleton | 🟡 In progress | ~29% |
+| **1** | Foundation — deps, theme, locales, skeleton | 🟡 In progress | ~33% |
 | **2** | Core gameplay — playable round end-to-end | ⏳ Not started | 0% |
 | **3** | Feel & polish — animation, audio, haptics, persistence, a11y | ⏳ Not started | 0% |
 | **4** | Release — EAS, store assets, submission | ⏳ Not started | 0% |
@@ -53,6 +53,7 @@ Pre-MVP setup that happened before the formal phase plan was written. Captured h
 - [x] **T1.2.1** — `zustand` installed.
 - [x] **T1.2.2** — `@react-native-async-storage/async-storage` installed.
 - [x] **T1.2.3** — `expo-audio` installed.
+- [x] **T1.2.4** — `expo-haptics` installed.
 
 ### Up next (immediate)
 

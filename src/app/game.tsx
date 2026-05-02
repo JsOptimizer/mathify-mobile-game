@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { ScreenContainer } from '@/src/shared/components';
+import { ScreenContainer, FlashOverlay } from '@/src/shared/components';
 import { useGameStore } from '@/src/features/game/store/gameStore';
 import { useGameLoop } from '@/src/features/game/hooks/useGameLoop';
 import { Timer } from '@/src/features/game/components/Timer';
@@ -25,6 +25,7 @@ export default function Game() {
 
   return (
     <ScreenContainer>
+      <FlashOverlay />
       <View className="flex-1">
         <View className="flex-row items-center justify-between">
           <ScoreBadge />

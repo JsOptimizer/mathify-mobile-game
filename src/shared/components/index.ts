@@ -6,3 +6,5 @@ export type { ScreenContainerProps } from './ScreenContainer';
 
 export { SegmentedControl } from './SegmentedControl';
 export type { SegmentedControlProps, SegmentedControlOption } from './SegmentedControl';
+
+export { FlashOverlay } from './FlashOverlay';

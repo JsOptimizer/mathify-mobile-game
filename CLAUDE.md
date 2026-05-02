@@ -1,0 +1,82 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+Mathify is a timed mental-arithmetic mobile game targeted at kids 8–12 (also enjoyable for adults). Built with Expo SDK 54, React Native 0.81, React 19, and TypeScript 5.9 (strict). The repo is in scaffold stage — Phase 0 (Bootstrap) is complete and Phase 1 (Foundation) is in progress. There is no backend; the app is fully client-local for the MVP.
+
+## Documentation Map
+
+**Read [PROJECT_STATUS.md](PROJECT_STATUS.md) first** to know which phase and tasks are currently active before doing anything else.
+
+- [PROJECT_STATUS.md](PROJECT_STATUS.md) — live progress tracker (current phase, % complete, immediate priorities). Update after shipping work.
+- [planned.md](planned.md) — full MVP roadmap: 4 phases × ~80 tasks (T1.x → T4.x). The authoritative task list.
+- [CHANGELOG.md](CHANGELOG.md) — what has shipped, ISO-date prefixed, semver. Append entries here after completing tasks.
+- [BRAIN.md](BRAIN.md) — original product brief / game-design pitch (core loop, difficulty, feedback model).
+- [project-spec.md](project-spec.md) — product spec: personas, user flows, success metrics, MVP scope and non-goals.
+- [architecture.md](architecture.md) — technical design: tech stack, data model, Zustand stores, performance/security targets.
+- [README.md](README.md) — generic Expo boilerplate; low signal, safe to ignore for project context.
+
+## Common Commands
+
+This project uses **pnpm** (not npm or yarn). `node-linker=hoisted` is set in `.npmrc` and `pnpm-workspace.yaml` — using a different package manager will break the install.
+
+```bash
+pnpm start            # expo start (dev server, choose platform from CLI)
+pnpm ios              # expo start --ios
+pnpm android          # expo start --android
+pnpm web              # expo start --web
+pnpm lint             # expo lint (eslint-config-expo)
+pnpm reset-project    # node ./scripts/reset-project.js (scaffold reset)
+```
+
+A `pnpm test` script does **not** exist yet — Jest + jest-expo are added in Phase 1 task T1.3.
+
+## Architecture
+
+### Routing root is non-default
+
+`app.config.js` sets `process.env.EXPO_ROUTER_APP_ROOT = 'src/app'`. Expo Router's default is `./app`, so all routes must live under `src/app/`, not the repo-root `app/`.
+
+### Source layout
+
+- `src/app/` — expo-router routes (file-based). `_layout.tsx` is the root Stack.
+- `src/shared/` — cross-cutting modules used by any feature:
+  - `components/`, `hooks/`, `store/`, `lib/`, `constants/`, `context/`, `assets/`
+  - `config/i18n.ts` — i18next initialized with `expo-localization` for device-locale auto-detect (falls back to `en`)
+  - `config/locales/{en,fr}.json` — translation resources
+- `src/features/<name>/` — feature modules (only `game/` is scaffolded). A feature owns its own components, hooks, store slice, types, and lib.
+
+### State management
+
+Two Zustand stores, **split by lifetime, not by feature**:
+
+- `gameStore` — transient. Holds the in-flight game session (state, score, time remaining, current question, streak, last feedback). Never persisted.
+- `prefsStore` — persisted via AsyncStorage. Holds language, last difficulty, sound/haptics toggles, and high score per difficulty. **Validated with Zod at the persistence boundary** (rehydrate path) to guard against corrupted storage.
+
+### TypeScript path alias
+
+`@/*` maps to the repo root (per `tsconfig.json`). Imports look like `@/src/shared/components/Button`.
+
+### Enabled Expo flags (in `app.json`)
+
+`newArchEnabled: true`, `reactCompiler: true`, `typedRoutes: true`. All new code must be compatible with the New Architecture and React Compiler — no legacy bridge APIs, no patterns that break the compiler's rules.
+
+## Conventions and Constraints
+
+- **MVP is client-only**: no backend, no accounts, no analytics, no ads, no IAP, no PII collected. COPPA-aligned. Do not introduce third-party SDKs or network calls without explicit instruction.
+- **Light theme only** for v1.0.0; theme tokens (Phase 1 T1.4) should be structured so a dark variant can be added post-ship.
+- **Accessibility is in-scope** from Phase 3: tap targets ≥56×56dp, WCAG AA contrast, VoiceOver/TalkBack labels on interactive elements.
+- **Performance targets**: cold start ≤1.5s, JS-thread frame budget ≤16ms (60fps), answer→feedback latency ≤50ms, app size ≤30MB.
+- **Zod is for boundaries only** — runtime validation on AsyncStorage rehydrate and any future external input. Don't wrap internal data in schemas.
+- **TypeScript strict mode** is on; do not loosen it.
+
+## Workflow
+
+When picking up work:
+
+1. Read [PROJECT_STATUS.md](PROJECT_STATUS.md) → identify the active phase and the next prioritized task.
+2. Find that task in [planned.md](planned.md) → it lists the concrete acceptance criteria.
+3. Implement.
+4. Update [PROJECT_STATUS.md](PROJECT_STATUS.md) (move task to done, recompute %) and append an entry to [CHANGELOG.md](CHANGELOG.md) (ISO-date prefix, reference the planned.md task ID).

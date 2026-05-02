@@ -4,8 +4,8 @@
 > Source of truth for milestones: [planned.md](planned.md). Source of truth for completed history: [CHANGELOG.md](CHANGELOG.md).
 
 **Last updated:** 2026-05-02
-**Current phase:** Phase 1 — Foundation (in progress, ~46% complete)
-**Overall MVP progress:** ~14% (11 / 80 tasks complete)
+**Current phase:** Phase 1 — Foundation (in progress, ~96% complete)
+**Overall MVP progress:** ~29% (23 / 80 tasks complete)
 **Next release target:** v1.0.0 — App Store + Play Store (end of Phase 4)
 **Active blockers:** None
 
@@ -16,7 +16,7 @@
 | Phase | Focus | Status | Progress |
 |---|---|---|---|
 | **0** | Project bootstrap (pre-MVP scaffold) | ✅ Complete | 100% |
-| **1** | Foundation — deps, theme, locales, skeleton | 🟡 In progress | ~46% |
+| **1** | Foundation — deps, theme, locales, skeleton | 🟡 In progress | ~96% |
 | **2** | Core gameplay — playable round end-to-end | ⏳ Not started | 0% |
 | **3** | Feel & polish — animation, audio, haptics, persistence, a11y | ⏳ Not started | 0% |
 | **4** | Release — EAS, store assets, submission | ⏳ Not started | 0% |
@@ -48,8 +48,8 @@ Pre-MVP setup that happened before the formal phase plan was written. Captured h
 
 - [x] **T1.1.1** — `app-example/` directory deleted.
 - [x] **T1.1.2** — `app-example` entry removed from `.gitignore`.
+- [x] **T1.1.3** — `.gitkeep` placeholders removed from `src/shared/components/`, `src/shared/constants/`, `src/features/`.
 - [x] **T1.1.4** — `tsconfig.json` path alias `@/*` verified working.
-- [x] **T1.7.1 (partial)** — Empty placeholder folders for `src/features/` and `src/shared/store|context|hooks|components` exist with `.gitkeep`.
 - [x] **T1.2.1** — `zustand` installed.
 - [x] **T1.2.2** — `@react-native-async-storage/async-storage` installed.
 - [x] **T1.2.3** — `expo-audio` installed.
@@ -57,17 +57,30 @@ Pre-MVP setup that happened before the formal phase plan was written. Captured h
 - [x] **T1.2.5** — `react-native-reanimated` installed; Babel plugin not required (Expo SDK 54 + New Arch handles reanimated v4 automatically).
 - [x] **T1.2.6** — `zod` installed.
 - [x] **T1.2.7** — `uuid` and `react-native-get-random-values` installed.
+- [x] **T1.3.1** — `jest-expo` installed as dev dependency.
+- [x] **T1.3.2** — `@testing-library/react-native` installed as dev dependency.
+- [x] **T1.3.3** — `@types/jest` installed as dev dependency.
+- [x] **T1.3.4** — `"test": "jest"` script present in `package.json`.
+- [x] **T1.3.5** — `jest.config.js` present, extending `jest-expo` with `passWithNoTests: true`.
+- [x] **T1.4.1** — `src/shared/constants/theme.ts` created with `colors`, `spacing`, `radii`, `type` tokens.
+- [x] **T1.4.2** — `Theme` TypeScript type exported from `theme.ts`.
+- [x] **T1.4.3** — All color pairs verified WCAG AA against `bg` (#FFFFFF).
+- [x] **T1.5.1** — `en.json` expanded with `common`, `home`, `game`, `gameOver`, `difficulty`, `languages` namespaces.
+- [x] **T1.5.2** — `fr.json` mirrors all keys with French translations.
+- [x] **T1.5.3** — `i18n.ts` confirmed correct (imports both EN and FR resources).
+- [x] **T1.5.4** — `src/shared/config/i18n.d.ts` created; `t('home.start')` etc. are now type-checked.
+- [x] **T1.6.1** — `src/shared/components/Button.tsx` created (3 variants, disabled/loading, 56dp min-height, a11y).
+- [x] **T1.6.2** — `src/shared/components/ScreenContainer.tsx` created.
+- [x] **T1.6.3** — `src/shared/components/SegmentedControl.tsx` created (generic over option type).
+- [x] **T1.6.4** — `src/shared/components/index.ts` re-exports all three.
+- [x] **T1.7.1** — `src/features/game/` tree stubbed: components, hooks, lib, store, types, audio.
+- [x] **T1.7.2** — `Difficulty`, `Operator`, `GameState`, `Feedback`, `Question` defined in `types/index.ts`.
+- [x] **T1.7.3** — `src/features/game/index.ts` public API re-export.
 
-### Up next (immediate)
+### Up next
 
-These should be tackled first to unblock Phase 2:
-
-1. **T1.2.1–T1.2.7** — Install runtime deps: `zustand`, `@react-native-async-storage/async-storage`, `expo-audio`, `expo-haptics`, `react-native-reanimated`, `zod`, `uuid` + `react-native-get-random-values`.
-2. **T1.3.1–T1.3.5** — Install dev deps and add `jest-expo` test runner.
-3. **T1.4.1–T1.4.3** — Create `src/shared/constants/theme.ts` with color/spacing/radii/type tokens.
-4. **T1.5.1–T1.5.4** — Expand `en.json` and `fr.json` to cover all MVP UI copy; add `i18n.d.ts` for typed `t()` keys.
-5. **T1.6.1–T1.6.4** — Create `Button`, `ScreenContainer`, `SegmentedControl` shared components.
-6. **T1.7.1–T1.7.3** — Stub the `src/features/game/` tree (components, hooks, lib, store, types).
+- Verify Phase 1 DoD: run `npx tsc --noEmit` and `pnpm test` — both should pass.
+- Phase 2 (Core Gameplay) is fully unblocked once the DoD check is green.
 
 ### Definition of Done (Phase 1)
 

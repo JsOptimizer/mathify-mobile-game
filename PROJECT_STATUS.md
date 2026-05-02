@@ -4,8 +4,8 @@
 > Source of truth for milestones: [planned.md](planned.md). Source of truth for completed history: [CHANGELOG.md](CHANGELOG.md).
 
 **Last updated:** 2026-05-02
-**Current phase:** Phase 1 — Foundation (in progress, ~100% complete)
-**Overall MVP progress:** ~37% (33 / 90 tasks complete)
+**Current phase:** Phase 2 — Core Gameplay (in progress, ~18% complete)
+**Overall MVP progress:** ~40% (36 / 90 tasks complete)
 **Next release target:** v1.0.0 — App Store + Play Store (end of Phase 4)
 **Active blockers:** None
 
@@ -17,7 +17,7 @@
 |---|---|---|---|
 | **0** | Project bootstrap (pre-MVP scaffold) | ✅ Complete | 100% |
 | **1** | Foundation — deps, theme, locales, skeleton, Uniwind/Tailwind styling | 🟡 In progress | ~100% |
-| **2** | Core gameplay — playable round end-to-end | ⏳ Not started | 0% |
+| **2** | Core gameplay — playable round end-to-end | 🟡 In progress | ~18% |
 | **3** | Feel & polish — animation, audio, haptics, persistence, a11y | ⏳ Not started | 0% |
 | **4** | Release — EAS, store assets, submission | ⏳ Not started | 0% |
 
@@ -104,7 +104,7 @@ Pre-MVP setup that happened before the formal phase plan was written. Captured h
 
 ---
 
-## Phase 2 — Core Gameplay (⏳ Not started)
+## Phase 2 — Core Gameplay (🟡 In progress)
 
 **Goal:** A playable round end-to-end. Tap Start → answer questions for 60 seconds → see final score. No polish yet.
 
@@ -115,7 +115,11 @@ Highlights of what will be delivered here:
 - `useGameLoop` hook driving the 1s tick.
 - Wired Home / Game / Game Over screens.
 
-**Cannot start until Phase 1 DoD is met.**
+### Accomplished
+
+- [x] **T2.1.1** — `difficulty.ts` implemented (operatorPool + operandRange).
+- [x] **T2.1.2** — `questionGenerator.ts` implemented (random operands, distractors, shuffled choices, uuid v4).
+- [x] **T2.1.3** — `scoring.ts` implemented (pointsFor + pure applyAnswer reducer).
 
 ---
 

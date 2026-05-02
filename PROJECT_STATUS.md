@@ -5,7 +5,7 @@
 
 **Last updated:** 2026-05-02
 **Current phase:** Phase 1 — Foundation (in progress, ~20% complete)
-**Overall MVP progress:** ~9% (7 / 80 tasks complete)
+**Overall MVP progress:** ~10% (8 / 80 tasks complete)
 **Next release target:** v1.0.0 — App Store + Play Store (end of Phase 4)
 **Active blockers:** None
 
@@ -16,7 +16,7 @@
 | Phase | Focus | Status | Progress |
 |---|---|---|---|
 | **0** | Project bootstrap (pre-MVP scaffold) | ✅ Complete | 100% |
-| **1** | Foundation — deps, theme, locales, skeleton | 🟡 In progress | ~21% |
+| **1** | Foundation — deps, theme, locales, skeleton | 🟡 In progress | ~25% |
 | **2** | Core gameplay — playable round end-to-end | ⏳ Not started | 0% |
 | **3** | Feel & polish — animation, audio, haptics, persistence, a11y | ⏳ Not started | 0% |
 | **4** | Release — EAS, store assets, submission | ⏳ Not started | 0% |
@@ -51,6 +51,7 @@ Pre-MVP setup that happened before the formal phase plan was written. Captured h
 - [x] **T1.1.4** — `tsconfig.json` path alias `@/*` verified working.
 - [x] **T1.7.1 (partial)** — Empty placeholder folders for `src/features/` and `src/shared/store|context|hooks|components` exist with `.gitkeep`.
 - [x] **T1.2.1** — `zustand` installed.
+- [x] **T1.2.2** — `@react-native-async-storage/async-storage` installed.
 
 ### Up next (immediate)
 

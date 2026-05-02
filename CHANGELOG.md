@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 
 ### Added
 
+- **2026-05-02** — Created persisted `prefsStore` at `src/shared/store/prefsStore.ts`: Zustand + `persist` middleware over AsyncStorage; Zod-validated rehydrate with `DEFAULT_PREFS` fallback; actions for language (also calls `i18next.changeLanguage`), difficulty, sound, haptics, and per-difficulty high-score recording (completes T3.4.1, T3.4.2, T3.4.3, T3.4.4).
 - **2026-05-02** — Phase 2 routes wired: `src/app/index.tsx` (Home) replaces the template stub with i18n title, difficulty `SegmentedControl`, Start button; `src/app/game.tsx` (Game) mounts `useGameLoop` and renders the playing UI, navigates to `/game-over` on `game_over`; `src/app/game-over.tsx` (Game Over) shows final score with Replay + Home buttons; `src/app/_layout.tsx` registers all three with `headerShown: false` and `gestureEnabled: false` on the game screens. This completes Phase 2 — a full playable round end-to-end (completes T2.6.1, T2.6.2, T2.6.3, T2.6.4).
 - **2026-05-02** — Game screen components verified for Phase 2: `QuestionCard`, `AnswerButton`, `Timer` (selector-subscribed to `timeRemaining`), `ScoreBadge` (selector-subscribed to `score`). Stub comments stripped from `AnswerButton` (completes T2.5.1, T2.5.2, T2.5.3, T2.5.4).
 - **2026-05-02** — `useGameLoop` hook drives the 1-second timer via `setInterval` while `gameState === 'playing'`; clears on state change or unmount (completes T2.4.1).

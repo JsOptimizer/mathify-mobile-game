@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 
 ### Added
 
+- **2026-05-02** — `useGameLoop` hook drives the 1-second timer via `setInterval` while `gameState === 'playing'`; clears on state change or unmount (completes T2.4.1).
 - **2026-05-02** — Implemented `gameStore` actions: `start(difficulty)` initialises a playing session and generates the first `Question`; `answer(choice)` applies scoring via `applyAnswer` and rolls a fresh question. `tick` and `reset` already in place. Selector subscriptions verified in `Timer` / `ScoreBadge` (completes T2.3.1, T2.3.2, T2.3.3).
 - **2026-05-02** — Implemented Phase 2 game logic primitives: `difficulty.ts` (operator pools + operand ranges), `questionGenerator.ts` (random arithmetic question with shuffled non-negative distractors and uuid v4 id), `scoring.ts` (pure `applyAnswer` reducer + `pointsFor` per difficulty) (completes T2.1.1, T2.1.2, T2.1.3).
 - **2026-05-02** — Created `src/features/game/index.ts` re-exporting the feature's public API (completes T1.7.3).

@@ -12,7 +12,7 @@ jest.mock('react-i18next', () => ({
 
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react-native';
-import GameOver from './game-over';
+import GameOver from '@/src/app/game-over';
 import { useGameStore } from '@/src/features/game/store/gameStore';
 
 describe('GameOver screen', () => {

@@ -12,7 +12,7 @@ jest.mock('react-i18next', () => ({
 
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react-native';
-import Home from './index';
+import Home from '@/src/app/index';
 import { useGameStore } from '@/src/features/game/store/gameStore';
 
 describe('Home screen', () => {

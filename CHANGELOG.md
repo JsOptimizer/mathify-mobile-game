@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 
 ### Added
 
+- **2026-05-02** — Installed `zustand ^5.0.12` as a runtime dependency (completes T1.2.1).
 - **2026-05-02** — `CHANGELOG.md` and `PROJECT_STATUS.md` to track project history and milestone progress.
 - **2026-05-02** — Three planning documents at the repo root:
   - [project-spec.md](project-spec.md) — product overview, target audience, JTBD, feature map, user flows.

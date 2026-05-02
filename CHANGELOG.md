@@ -16,6 +16,19 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 
 ### Added
 
+- **2026-05-02** — Created `src/features/game/index.ts` re-exporting the feature's public API (completes T1.7.3).
+- **2026-05-02** — Defined `Difficulty`, `Operator`, `GameState`, `Feedback`, `Question` types in `src/features/game/types/index.ts` (completes T1.7.2).
+- **2026-05-02** — Stubbed entire `src/features/game/` directory tree: `components/` (QuestionCard, AnswerButton, Timer, ScoreBadge), `hooks/` (useGameLoop, useQuestionGenerator), `lib/` (difficulty, questionGenerator, scoring), `store/gameStore.ts`, `types/index.ts`, `audio/` (completes T1.7.1).
+- **2026-05-02** — Created `src/shared/components/index.ts` re-exporting Button, ScreenContainer, SegmentedControl (completes T1.6.4).
+- **2026-05-02** — Created `src/shared/components/SegmentedControl.tsx` — generic kid-friendly difficulty toggle with accessibility props and 56dp min-height segments (completes T1.6.3).
+- **2026-05-02** — Created `src/shared/components/ScreenContainer.tsx` — SafeAreaView-wrapped container with bg color and default padding (completes T1.6.2).
+- **2026-05-02** — Created `src/shared/components/Button.tsx` — theme-driven button with `primary`, `ghost`, `danger` variants; `disabled` and `loading` states; 56dp min-height; full accessibility props (completes T1.6.1).
+- **2026-05-02** — Added `src/shared/config/i18n.d.ts` augmenting `react-i18next`'s `Resources` so `t(...)` keys are type-checked against `en.json` (completes T1.5.4).
+- **2026-05-02** — Expanded `src/shared/config/locales/fr.json` to mirror all MVP copy keys in French (completes T1.5.2).
+- **2026-05-02** — Expanded `src/shared/config/locales/en.json` with namespaces `common`, `home`, `game`, `gameOver`, `difficulty`, `languages` covering all MVP UI strings (completes T1.5.1).
+- **2026-05-02** — Created `src/shared/constants/theme.ts` exporting `colors`, `spacing`, `radii`, `type` tokens and the `Theme` type; all foreground/background pairs verified WCAG AA (completes T1.4.1, T1.4.2, T1.4.3).
+- **2026-05-02** — Removed `.gitkeep` placeholders from `src/shared/components/`, `src/shared/constants/`, and `src/features/` now that real files have been added (completes T1.1.3 partial).
+- **2026-05-02** — `jest.config.js` present with `jest-expo` preset and `passWithNoTests: true`; `"test": "jest"` script in `package.json`; `jest-expo`, `@testing-library/react-native`, `@types/jest` all installed (completes T1.3.1–T1.3.5).
 - **2026-05-02** — Installed `uuid ^14.0.0` and `react-native-get-random-values ^2.0.0` for `Question.id` UUID v4 generation (completes T1.2.7).
 - **2026-05-02** — Installed `zod ^4.4.1` for runtime schema validation at persistence boundaries (completes T1.2.6).
 - **2026-05-02** — `react-native-reanimated ~4.1.1` confirmed present (SDK 54 default template); Expo SDK 54 + New Architecture handles reanimated v4 automatically — no Babel plugin entry required (completes T1.2.5).

@@ -1,5 +1,39 @@
 {
-  "welcome": "Welcome",
-  "hello": "Hello",
-  "language": "Language"
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "back": "Back",
+    "close": "Close"
+  },
+  "home": {
+    "title": "Mathify",
+    "subtitle": "How fast can you go?",
+    "start": "Start",
+    "bestScore": "Best: {{score}}",
+    "language": "Language",
+    "sound": "Sound",
+    "haptics": "Haptics"
+  },
+  "game": {
+    "score": "Score",
+    "time": "Time",
+    "timeRemaining": "{{seconds}}s",
+    "question": "{{left}} {{op}} {{right}} = ?"
+  },
+  "gameOver": {
+    "title": "Game Over",
+    "finalScore": "Your score: {{score}}",
+    "newBest": "New best!",
+    "replay": "Play Again",
+    "home": "Home"
+  },
+  "difficulty": {
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard"
+  },
+  "languages": {
+    "en": "English",
+    "fr": "Français"
+  }
 }

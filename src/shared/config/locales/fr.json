@@ -1,5 +1,39 @@
 {
-  "welcome": "Bienvenue",
-  "hello": "Bonjour",
-  "language": "Langue"
+  "common": {
+    "ok": "OK",
+    "cancel": "Annuler",
+    "back": "Retour",
+    "close": "Fermer"
+  },
+  "home": {
+    "title": "Mathify",
+    "subtitle": "Jusqu'où peux-tu aller ?",
+    "start": "Démarrer",
+    "bestScore": "Meilleur : {{score}}",
+    "language": "Langue",
+    "sound": "Son",
+    "haptics": "Haptique"
+  },
+  "game": {
+    "score": "Score",
+    "time": "Temps",
+    "timeRemaining": "{{seconds}}s",
+    "question": "{{left}} {{op}} {{right}} = ?"
+  },
+  "gameOver": {
+    "title": "Partie terminée",
+    "finalScore": "Ton score : {{score}}",
+    "newBest": "Nouveau record !",
+    "replay": "Rejouer",
+    "home": "Accueil"
+  },
+  "difficulty": {
+    "easy": "Facile",
+    "medium": "Moyen",
+    "hard": "Difficile"
+  },
+  "languages": {
+    "en": "English",
+    "fr": "Français"
+  }
 }

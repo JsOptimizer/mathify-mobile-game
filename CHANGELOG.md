@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 
 ## [Unreleased]
 
+### Removed
+
+- **2026-05-02** — Deleted leftover Expo template directory `app-example/` and removed its `.gitignore` entry (completes T1.1.1, T1.1.2).
+
 ### Added
 
 - **2026-05-02** — `CHANGELOG.md` and `PROJECT_STATUS.md` to track project history and milestone progress.

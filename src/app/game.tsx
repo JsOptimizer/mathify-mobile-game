@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { ScreenContainer, FlashOverlay } from '@/src/shared/components';
 import { useGameStore } from '@/src/features/game/store/gameStore';
 import { useGameLoop } from '@/src/features/game/hooks/useGameLoop';
+import { useHaptics } from '@/src/shared/hooks/useHaptics';
 import { Timer } from '@/src/features/game/components/Timer';
 import { ScoreBadge } from '@/src/features/game/components/ScoreBadge';
 import { QuestionCard } from '@/src/features/game/components/QuestionCard';
@@ -12,9 +13,11 @@ import { AnswerButton } from '@/src/features/game/components/AnswerButton';
 export default function Game() {
   const router = useRouter();
   useGameLoop();
+  const haptics = useHaptics();
 
   const gameState = useGameStore((s) => s.gameState);
   const currentQuestion = useGameStore((s) => s.currentQuestion);
+  const lastFeedback = useGameStore((s) => s.lastFeedback);
   const answer = useGameStore((s) => s.answer);
 
   useEffect(() => {
@@ -22,6 +25,11 @@ export default function Game() {
       router.replace('/game-over');
     }
   }, [gameState, router]);
+
+  useEffect(() => {
+    if (lastFeedback === 'correct') haptics.success();
+    else if (lastFeedback === 'wrong') haptics.error();
+  }, [lastFeedback, currentQuestion?.id, haptics]);
 
   return (
     <ScreenContainer>

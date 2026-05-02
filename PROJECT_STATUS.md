@@ -4,8 +4,8 @@
 > Source of truth for milestones: [planned.md](planned.md). Source of truth for completed history: [CHANGELOG.md](CHANGELOG.md).
 
 **Last updated:** 2026-05-02
-**Current phase:** Phase 2 — Core Gameplay (in progress, ~41% complete)
-**Overall MVP progress:** ~44% (40 / 90 tasks complete)
+**Current phase:** Phase 2 — Core Gameplay (in progress, ~65% complete)
+**Overall MVP progress:** ~49% (44 / 90 tasks complete)
 **Next release target:** v1.0.0 — App Store + Play Store (end of Phase 4)
 **Active blockers:** None
 
@@ -17,7 +17,7 @@
 |---|---|---|---|
 | **0** | Project bootstrap (pre-MVP scaffold) | ✅ Complete | 100% |
 | **1** | Foundation — deps, theme, locales, skeleton, Uniwind/Tailwind styling | 🟡 In progress | ~100% |
-| **2** | Core gameplay — playable round end-to-end | 🟡 In progress | ~41% |
+| **2** | Core gameplay — playable round end-to-end | 🟡 In progress | ~65% |
 | **3** | Feel & polish — animation, audio, haptics, persistence, a11y | ⏳ Not started | 0% |
 | **4** | Release — EAS, store assets, submission | ⏳ Not started | 0% |
 
@@ -124,6 +124,10 @@ Highlights of what will be delivered here:
 - [x] **T2.3.2** — `start`, `answer`, `tick`, `reset` actions implemented; `start` generates first question, `answer` reduces score via `applyAnswer` and rolls a fresh question.
 - [x] **T2.3.3** — Selector-based subscriptions verified in `Timer` and `ScoreBadge` (via `useGameStore((s) => …)`).
 - [x] **T2.4.1** — `useGameLoop` hook drives the 1s timer tick when playing.
+- [x] **T2.5.1** — `QuestionCard` renders `{left} {op} {right} = ?` in display type.
+- [x] **T2.5.2** — `AnswerButton` wraps shared `Button`, emits `onPress(value)`.
+- [x] **T2.5.3** — `Timer` selector-subscribes to `timeRemaining`; renders seconds (red when ≤3).
+- [x] **T2.5.4** — `ScoreBadge` selector-subscribes to `score`; renders inside a primary-color pill.
 
 ---
 

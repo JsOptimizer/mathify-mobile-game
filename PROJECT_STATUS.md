@@ -4,8 +4,8 @@
 > Source of truth for milestones: [planned.md](planned.md). Source of truth for completed history: [CHANGELOG.md](CHANGELOG.md).
 
 **Last updated:** 2026-05-02
-**Current phase:** Phase 2 — Core Gameplay (in progress, ~65% complete)
-**Overall MVP progress:** ~49% (44 / 90 tasks complete)
+**Current phase:** Phase 3 — Feel & Polish (not yet started)
+**Overall MVP progress:** ~53% (48 / 90 tasks complete)
 **Next release target:** v1.0.0 — App Store + Play Store (end of Phase 4)
 **Active blockers:** None
 
@@ -17,7 +17,7 @@
 |---|---|---|---|
 | **0** | Project bootstrap (pre-MVP scaffold) | ✅ Complete | 100% |
 | **1** | Foundation — deps, theme, locales, skeleton, Uniwind/Tailwind styling | 🟡 In progress | ~100% |
-| **2** | Core gameplay — playable round end-to-end | 🟡 In progress | ~65% |
+| **2** | Core gameplay — playable round end-to-end | ✅ Complete | 100% |
 | **3** | Feel & polish — animation, audio, haptics, persistence, a11y | ⏳ Not started | 0% |
 | **4** | Release — EAS, store assets, submission | ⏳ Not started | 0% |
 
@@ -104,7 +104,7 @@ Pre-MVP setup that happened before the formal phase plan was written. Captured h
 
 ---
 
-## Phase 2 — Core Gameplay (🟡 In progress)
+## Phase 2 — Core Gameplay (✅ Complete)
 
 **Goal:** A playable round end-to-end. Tap Start → answer questions for 60 seconds → see final score. No polish yet.
 
@@ -128,6 +128,14 @@ Highlights of what will be delivered here:
 - [x] **T2.5.2** — `AnswerButton` wraps shared `Button`, emits `onPress(value)`.
 - [x] **T2.5.3** — `Timer` selector-subscribes to `timeRemaining`; renders seconds (red when ≤3).
 - [x] **T2.5.4** — `ScoreBadge` selector-subscribes to `score`; renders inside a primary-color pill.
+- [x] **T2.6.1** — Home screen (title, difficulty SegmentedControl, Start → start+navigate to /game).
+- [x] **T2.6.2** — Game screen (mounts useGameLoop, renders Timer/ScoreBadge/QuestionCard/AnswerButton; on game_over → /game-over).
+- [x] **T2.6.3** — Game Over screen (renders final score; Replay button resets+starts+navigates to /game; Home button navigates to /).
+- [x] **T2.6.4** — _layout.tsx registers three screens; headerShown false; gestureEnabled false on game + game-over.
+
+### Up next
+
+- Phase 2 is complete. Ready to start Phase 3 (Feel & Polish): FlashOverlay, audio hooks, haptics hooks, prefsStore, language toggle wiring, accessibility pass.
 
 ---
 

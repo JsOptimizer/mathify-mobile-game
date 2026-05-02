@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Pressable, Text, StyleSheet } from 'react-native';
-import { colors, radii, spacing, type } from '@/src/shared/constants/theme';
+import { View, Pressable, Text } from 'react-native';
 
 export interface SegmentedControlOption<T extends string> {
   label: string;
@@ -21,10 +20,13 @@ export function SegmentedControl<T extends string>({
   accessibilityLabel = 'Segmented control',
 }: SegmentedControlProps<T>) {
   return (
-    <View style={styles.container} accessibilityRole="tablist" accessibilityLabel={accessibilityLabel}>
+    <View
+      className="flex-row bg-surface rounded-md border border-border overflow-hidden min-h-[56px]"
+      accessibilityRole="tablist"
+      accessibilityLabel={accessibilityLabel}
+    >
       {options.map((option, index) => {
         const isSelected = option.value === value;
-        const isFirst = index === 0;
         const isLast = index === options.length - 1;
         return (
           <Pressable
@@ -33,16 +35,18 @@ export function SegmentedControl<T extends string>({
             accessibilityRole="tab"
             accessibilityLabel={option.label}
             accessibilityState={{ selected: isSelected }}
-            style={({ pressed }) => [
-              styles.segment,
-              isFirst && styles.segmentFirst,
-              isLast && styles.segmentLast,
-              isSelected && styles.segmentSelected,
-              pressed && !isSelected && styles.segmentPressed,
-            ]}
+            className={[
+              'flex-1 items-center justify-center py-sm px-sm min-h-[56px]',
+              !isLast && 'border-r border-border',
+              isSelected && 'bg-primary',
+              !isSelected && 'active:bg-border',
+            ].filter(Boolean).join(' ')}
           >
             <Text
-              style={[styles.label, isSelected && styles.labelSelected]}
+              className={[
+                'text-body font-semibold text-center',
+                isSelected ? 'text-white' : 'text-text-primary',
+              ].join(' ')}
               numberOfLines={1}
             >
               {option.label}
@@ -53,33 +57,5 @@ export function SegmentedControl<T extends string>({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    backgroundColor: colors.surface,
-    borderRadius: radii.md,
-    borderWidth: 1,
-    borderColor: colors.border,
-    overflow: 'hidden',
-    minHeight: 56,
-  },
-  segment: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: spacing.sm,
-    paddingHorizontal: spacing.sm,
-    borderRightWidth: 1,
-    borderRightColor: colors.border,
-    minHeight: 56,
-  },
-  segmentFirst: { borderLeftWidth: 0 },
-  segmentLast: { borderRightWidth: 0 },
-  segmentSelected: { backgroundColor: colors.primary },
-  segmentPressed: { backgroundColor: colors.border },
-  label: { ...type.body, fontWeight: '600', color: colors.text.primary, textAlign: 'center' },
-  labelSelected: { color: '#FFFFFF' },
-});
 
 export default SegmentedControl;

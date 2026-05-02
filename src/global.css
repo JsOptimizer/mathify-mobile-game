@@ -1,0 +1,39 @@
+@import 'tailwindcss';
+@import 'uniwind';
+
+@theme {
+  --color-bg: #FFFFFF;
+  --color-surface: #F5F7FA;
+  --color-primary: #1A5CFF;
+  --color-success: #1B8A3E;
+  --color-danger: #D42B2B;
+  --color-text-primary: #111827;
+  --color-text-muted: #6B7280;
+  --color-border: #E5E7EB;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+
+  --text-display: 48px;
+  --text-display--line-height: 56px;
+  --text-display--font-weight: 800;
+  --text-h1: 32px;
+  --text-h1--line-height: 40px;
+  --text-h1--font-weight: 700;
+  --text-h2: 24px;
+  --text-h2--line-height: 32px;
+  --text-h2--font-weight: 600;
+  --text-body: 16px;
+  --text-body--line-height: 24px;
+  --text-caption: 12px;
+  --text-caption--line-height: 18px;
+}

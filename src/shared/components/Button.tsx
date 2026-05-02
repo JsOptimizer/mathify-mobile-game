@@ -1,31 +1,34 @@
 import React from 'react';
-import {
-  Pressable,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  type PressableProps,
-  type StyleProp,
-  type ViewStyle,
-} from 'react-native';
-import { colors, radii, spacing, type } from '@/src/shared/constants/theme';
+import { Pressable, Text, ActivityIndicator, type PressableProps } from 'react-native';
 
 export type ButtonVariant = 'primary' | 'ghost' | 'danger';
 
-export interface ButtonProps extends Omit<PressableProps, 'style'> {
+export interface ButtonProps extends Omit<PressableProps, 'children'> {
   label: string;
   variant?: ButtonVariant;
   disabled?: boolean;
   loading?: boolean;
-  style?: StyleProp<ViewStyle>;
+  className?: string;
 }
+
+const VARIANT_CONTAINER: Record<ButtonVariant, string> = {
+  primary: 'bg-primary',
+  ghost: 'bg-transparent border-2 border-primary',
+  danger: 'bg-danger',
+};
+
+const VARIANT_LABEL: Record<ButtonVariant, string> = {
+  primary: 'text-white',
+  ghost: 'text-primary',
+  danger: 'text-white',
+};
 
 export function Button({
   label,
   variant = 'primary',
   disabled = false,
   loading = false,
-  style,
+  className,
   accessibilityLabel,
   accessibilityHint,
   ...rest
@@ -40,27 +43,23 @@ export function Button({
       accessibilityLabel={accessibilityLabel ?? label}
       accessibilityHint={accessibilityHint}
       accessibilityState={{ disabled: isDisabled }}
-      style={({ pressed }) => [
-        styles.base,
-        styles[variant],
-        isDisabled && styles.disabled,
-        pressed && !isDisabled && styles.pressed,
-        style,
-      ]}
+      className={[
+        'min-h-[56px] min-w-[56px] rounded-md px-lg py-sm items-center justify-center',
+        VARIANT_CONTAINER[variant],
+        'active:opacity-80',
+        isDisabled && 'opacity-[0.45]',
+        className,
+      ].filter(Boolean).join(' ')}
     >
       {loading ? (
-        <ActivityIndicator
-          color={variant === 'ghost' ? colors.primary : '#FFFFFF'}
-          accessibilityLabel="Loading"
-        />
+        <ActivityIndicator colorClassName={variant === 'ghost' ? 'text-primary' : 'text-white'} accessibilityLabel="Loading" />
       ) : (
         <Text
-          style={[
-            styles.label,
-            variant === 'ghost' && styles.labelGhost,
-            variant === 'danger' && styles.labelDanger,
-            isDisabled && styles.labelDisabled,
-          ]}
+          className={[
+            'text-body font-semibold',
+            VARIANT_LABEL[variant],
+            isDisabled && 'opacity-70',
+          ].filter(Boolean).join(' ')}
           numberOfLines={1}
         >
           {label}
@@ -69,30 +68,5 @@ export function Button({
     </Pressable>
   );
 }
-
-const styles = StyleSheet.create({
-  base: {
-    minHeight: 56,
-    minWidth: 56,
-    borderRadius: radii.md,
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.sm,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  primary: { backgroundColor: colors.primary },
-  ghost: {
-    backgroundColor: 'transparent',
-    borderWidth: 2,
-    borderColor: colors.primary,
-  },
-  danger: { backgroundColor: colors.danger },
-  disabled: { opacity: 0.45 },
-  pressed: { opacity: 0.8 },
-  label: { ...type.body, fontWeight: '600', color: '#FFFFFF' },
-  labelGhost: { color: colors.primary },
-  labelDanger: { color: '#FFFFFF' },
-  labelDisabled: { opacity: 0.7 },
-});
 
 export default Button;

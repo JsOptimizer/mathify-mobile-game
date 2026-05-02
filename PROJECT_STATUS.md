@@ -4,8 +4,8 @@
 > Source of truth for milestones: [planned.md](planned.md). Source of truth for completed history: [CHANGELOG.md](CHANGELOG.md).
 
 **Last updated:** 2026-05-02
-**Current phase:** Phase 3 — Feel & Polish (in progress, ~35% complete)
-**Overall MVP progress:** 60% (54 / 90 tasks complete)
+**Current phase:** Phase 3 — Feel & Polish (in progress, ~47% complete)
+**Overall MVP progress:** 62% (56 / 90 tasks complete)
 **Next release target:** v1.0.0 — App Store + Play Store (end of Phase 4)
 **Active blockers:** None
 
@@ -18,7 +18,7 @@
 | **0** | Project bootstrap (pre-MVP scaffold) | ✅ Complete | 100% |
 | **1** | Foundation — deps, theme, locales, skeleton, Uniwind/Tailwind styling | 🟡 In progress | ~100% |
 | **2** | Core gameplay — playable round end-to-end | ✅ Complete | 100% |
-| **3** | Feel & polish — animation, audio, haptics, persistence, a11y | 🟡 In progress | ~35% |
+| **3** | Feel & polish — animation, audio, haptics, persistence, a11y | 🟡 In progress | ~47% |
 | **4** | Release — EAS, store assets, submission | ⏳ Not started | 0% |
 
 ---
@@ -159,6 +159,8 @@ Highlights:
 - [x] **T3.4.4** — Actions implemented: `setLanguage` (also calls `i18n.changeLanguage`), `setDifficulty`, `setSoundEnabled`, `setHapticsEnabled`, `recordScore` (writes only if higher than current best).
 - [x] **T3.1.1** — `FlashOverlay.tsx` flashes green/red over the game screen on `lastFeedback` changes, using Reanimated `useSharedValue` + `withSequence` + `withTiming` on the UI thread (60ms in, 200ms out, peak opacity 0.4).
 - [x] **T3.1.2** — `FlashOverlay` mounted once at the top of `src/app/game.tsx`.
+- [x] **T3.3.1** — `useHaptics` hook returns `{ success, error }`; both no-op when `prefsStore.haptics_enabled` is false.
+- [x] **T3.3.2** — Wired into `src/app/game.tsx` via `useEffect` on `[lastFeedback, currentQuestion?.id]`; fires success on correct, error on wrong.
 
 ---
 

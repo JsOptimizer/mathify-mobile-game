@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 
 ### Added
 
+- **2026-05-02** — Implemented Phase 2 game logic primitives: `difficulty.ts` (operator pools + operand ranges), `questionGenerator.ts` (random arithmetic question with shuffled non-negative distractors and uuid v4 id), `scoring.ts` (pure `applyAnswer` reducer + `pointsFor` per difficulty) (completes T2.1.1, T2.1.2, T2.1.3).
 - **2026-05-02** — Created `src/features/game/index.ts` re-exporting the feature's public API (completes T1.7.3).
 - **2026-05-02** — Defined `Difficulty`, `Operator`, `GameState`, `Feedback`, `Question` types in `src/features/game/types/index.ts` (completes T1.7.2).
 - **2026-05-02** — Stubbed entire `src/features/game/` directory tree: `components/` (QuestionCard, AnswerButton, Timer, ScoreBadge), `hooks/` (useGameLoop, useQuestionGenerator), `lib/` (difficulty, questionGenerator, scoring), `store/gameStore.ts`, `types/index.ts`, `audio/` (completes T1.7.1).

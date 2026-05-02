@@ -4,8 +4,8 @@
 > Source of truth for milestones: [planned.md](planned.md). Source of truth for completed history: [CHANGELOG.md](CHANGELOG.md).
 
 **Last updated:** 2026-05-02
-**Current phase:** Phase 3 — Feel & Polish (not yet started)
-**Overall MVP progress:** ~53% (48 / 90 tasks complete)
+**Current phase:** Phase 3 — Feel & Polish (in progress, ~24% complete)
+**Overall MVP progress:** ~58% (52 / 90 tasks complete)
 **Next release target:** v1.0.0 — App Store + Play Store (end of Phase 4)
 **Active blockers:** None
 
@@ -18,7 +18,7 @@
 | **0** | Project bootstrap (pre-MVP scaffold) | ✅ Complete | 100% |
 | **1** | Foundation — deps, theme, locales, skeleton, Uniwind/Tailwind styling | 🟡 In progress | ~100% |
 | **2** | Core gameplay — playable round end-to-end | ✅ Complete | 100% |
-| **3** | Feel & polish — animation, audio, haptics, persistence, a11y | ⏳ Not started | 0% |
+| **3** | Feel & polish — animation, audio, haptics, persistence, a11y | 🟡 In progress | ~24% |
 | **4** | Release — EAS, store assets, submission | ⏳ Not started | 0% |
 
 ---
@@ -139,7 +139,7 @@ Highlights of what will be delivered here:
 
 ---
 
-## Phase 3 — Feel & Polish (⏳ Not started)
+## Phase 3 — Feel & Polish (🟡 In progress)
 
 **Goal:** Convert "playable" into "fun" — feedback flashes, audio, haptics, persisted high score per difficulty, language toggle, and accessibility pass.
 
@@ -150,6 +150,13 @@ Highlights:
 - `prefsStore` (Zustand `persist` + AsyncStorage) with Zod rehydration validation.
 - High score persisted per difficulty.
 - VoiceOver / TalkBack pass and WCAG AA contrast verification.
+
+### Accomplished
+
+- [x] **T3.4.1** — `prefsStore.ts` created with Zod schema covering `language`, `last_difficulty`, `sound_enabled`, `haptics_enabled`, `high_score`.
+- [x] **T3.4.2** — Wrapped store with Zustand `persist` middleware using AsyncStorage as storage adapter.
+- [x] **T3.4.3** — Custom `merge` runs `PrefsSchema.safeParse`; falls back to `DEFAULT_PREFS` on failure with a single `__DEV__` warning.
+- [x] **T3.4.4** — Actions implemented: `setLanguage` (also calls `i18n.changeLanguage`), `setDifficulty`, `setSoundEnabled`, `setHapticsEnabled`, `recordScore` (writes only if higher than current best).
 
 ---
 

@@ -1,3 +1,5 @@
+jest.mock('uuid', () => ({ v4: () => 'test-uuid' }));
+
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react-native';
 import { AnswerButton } from '@/src/features/game/components/AnswerButton';

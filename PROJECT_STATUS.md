@@ -4,8 +4,8 @@
 > Source of truth for milestones: [planned.md](planned.md). Source of truth for completed history: [CHANGELOG.md](CHANGELOG.md).
 
 **Last updated:** 2026-05-02
-**Current phase:** Phase 1 — Foundation (in progress, ~96% complete)
-**Overall MVP progress:** ~29% (23 / 80 tasks complete)
+**Current phase:** Phase 1 — Foundation (in progress, ~100% complete)
+**Overall MVP progress:** ~37% (33 / 90 tasks complete)
 **Next release target:** v1.0.0 — App Store + Play Store (end of Phase 4)
 **Active blockers:** None
 
@@ -16,7 +16,7 @@
 | Phase | Focus | Status | Progress |
 |---|---|---|---|
 | **0** | Project bootstrap (pre-MVP scaffold) | ✅ Complete | 100% |
-| **1** | Foundation — deps, theme, locales, skeleton | 🟡 In progress | ~96% |
+| **1** | Foundation — deps, theme, locales, skeleton, Uniwind/Tailwind styling | 🟡 In progress | ~100% |
 | **2** | Core gameplay — playable round end-to-end | ⏳ Not started | 0% |
 | **3** | Feel & polish — animation, audio, haptics, persistence, a11y | ⏳ Not started | 0% |
 | **4** | Release — EAS, store assets, submission | ⏳ Not started | 0% |
@@ -76,10 +76,21 @@ Pre-MVP setup that happened before the formal phase plan was written. Captured h
 - [x] **T1.7.1** — `src/features/game/` tree stubbed: components, hooks, lib, store, types, audio.
 - [x] **T1.7.2** — `Difficulty`, `Operator`, `GameState`, `Feedback`, `Question` defined in `types/index.ts`.
 - [x] **T1.7.3** — `src/features/game/index.ts` public API re-export.
+- [x] **T1.8.1** — `uniwind ^1.6.3` + `tailwindcss ^4.2.4` installed.
+- [x] **T1.8.2** — `src/global.css` created with `@import 'tailwindcss';`, `@import 'uniwind';`, and a `@theme { … }` block translating all design tokens.
+- [x] **T1.8.3** — `metro.config.js` created wrapping the Expo default with `withUniwindConfig`.
+- [x] **T1.8.4** — `.gitignore` updated for `src/uniwind-types.d.ts`; `src/uniwind.d.ts` added to load uniwind type augmentations.
+- [x] **T1.8.5** — `src/app/_layout.tsx` imports `'../global.css'`.
+- [x] **T1.8.6** — `Button.tsx` migrated to `className`.
+- [x] **T1.8.7** — `ScreenContainer.tsx` migrated to `className`.
+- [x] **T1.8.8** — `SegmentedControl.tsx` migrated to `className`.
+- [x] **T1.8.9** — `QuestionCard`, `Timer`, `ScoreBadge` migrated to `className`; `AnswerButton` had no styles to migrate.
+- [x] **T1.8.10** — `src/shared/constants/theme.ts` deleted (tokens now in `global.css`).
 
 ### Up next
 
 - Verify Phase 1 DoD: run `npx tsc --noEmit` and `pnpm test` — both should pass.
+- First `npx expo start` after the migration will auto-generate `src/uniwind-types.d.ts`; subsequent `tsc` runs will benefit from the typed className list.
 - Phase 2 (Core Gameplay) is fully unblocked once the DoD check is green.
 
 ### Definition of Done (Phase 1)
@@ -89,6 +100,7 @@ Pre-MVP setup that happened before the formal phase plan was written. Captured h
 - `pnpm test` runs (zero tests yet, but exits 0).
 - App still launches with `npx expo start`.
 - `app-example/` is gone.
+- `grep -rn "StyleSheet.create" src/` returns empty.
 
 ---
 

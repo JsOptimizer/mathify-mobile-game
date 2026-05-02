@@ -1,6 +1,6 @@
 # Mathify — Project Specification
 
-> A fast-paced, arcade-style mental-math game for kids 8–12, built with Expo and React Native.
+> A fast-paced, arcade-style mental-math game for kids 8–12, built with Expo and React Native. Styling is done with Uniwind + Tailwind CSS v4 (utility classes via `className`).
 
 > **Companion documents**
 > - [architecture.md](architecture.md) — tech stack, project structure, data model, engineering requirements

@@ -10,8 +10,18 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 
 ## [Unreleased]
 
+### Removed
+
+- **2026-05-02** — Deleted leftover Expo template directory `app-example/` and removed its `.gitignore` entry (completes T1.1.1, T1.1.2).
+
 ### Added
 
+- **2026-05-02** — Installed `zod ^4.4.1` for runtime schema validation at persistence boundaries (completes T1.2.6).
+- **2026-05-02** — `react-native-reanimated ~4.1.1` confirmed present (SDK 54 default template); Expo SDK 54 + New Architecture handles reanimated v4 automatically — no Babel plugin entry required (completes T1.2.5).
+- **2026-05-02** — `expo-haptics ~15.0.8` confirmed present (SDK 54 default template); no additional install required (completes T1.2.4).
+- **2026-05-02** — Installed `expo-audio ~1.1.1` (SDK 54 compatible) and registered its plugin in `app.json` (completes T1.2.3).
+- **2026-05-02** — Installed `@react-native-async-storage/async-storage ^3.0.2` as a runtime dependency (completes T1.2.2).
+- **2026-05-02** — Installed `zustand ^5.0.12` as a runtime dependency (completes T1.2.1).
 - **2026-05-02** — `CHANGELOG.md` and `PROJECT_STATUS.md` to track project history and milestone progress.
 - **2026-05-02** — Three planning documents at the repo root:
   - [project-spec.md](project-spec.md) — product overview, target audience, JTBD, feature map, user flows.

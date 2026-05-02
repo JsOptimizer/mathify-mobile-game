@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 import type { Difficulty, GameState, Question, Feedback } from '@/src/features/game/types';
+import { generateQuestion } from '@/src/features/game/lib/questionGenerator';
+import { applyAnswer } from '@/src/features/game/lib/scoring';
 
 export interface GameStoreState {
   gameState: GameState;
@@ -20,10 +22,12 @@ export interface GameStoreActions {
 
 export type GameStore = GameStoreState & GameStoreActions;
 
+const ROUND_SECONDS = 60;
+
 const DEFAULT_STATE: GameStoreState = {
   gameState: 'idle',
   score: 0,
-  timeRemaining: 60,
+  timeRemaining: ROUND_SECONDS,
   currentQuestion: null,
   streak: 0,
   lastFeedback: null,
@@ -33,12 +37,40 @@ const DEFAULT_STATE: GameStoreState = {
 export const useGameStore = create<GameStore>((set) => ({
   ...DEFAULT_STATE,
 
-  start: (_difficulty: Difficulty) => {
-    throw new Error('gameStore.start not yet implemented (Phase 2 T2.3.2)');
+  start: (difficulty: Difficulty) => {
+    set({
+      gameState: 'playing',
+      score: 0,
+      timeRemaining: ROUND_SECONDS,
+      streak: 0,
+      lastFeedback: null,
+      difficulty,
+      currentQuestion: generateQuestion(difficulty),
+    });
   },
 
-  answer: (_choice: number) => {
-    throw new Error('gameStore.answer not yet implemented (Phase 2 T2.3.2)');
+  answer: (choice: number) => {
+    set((state) => {
+      if (state.gameState !== 'playing' || state.currentQuestion === null) {
+        return {};
+      }
+      const next = applyAnswer(
+        {
+          score: state.score,
+          streak: state.streak,
+          lastFeedback: state.lastFeedback,
+          difficulty: state.difficulty,
+        },
+        choice,
+        state.currentQuestion.correct_answer,
+      );
+      return {
+        score: next.score,
+        streak: next.streak,
+        lastFeedback: next.lastFeedback,
+        currentQuestion: generateQuestion(state.difficulty),
+      };
+    });
   },
 
   tick: () => {

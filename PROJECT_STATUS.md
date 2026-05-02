@@ -5,7 +5,7 @@
 
 **Last updated:** 2026-05-02
 **Current phase:** Phase 1 — Foundation (in progress, ~20% complete)
-**Overall MVP progress:** ~5% (4 / 80 tasks complete)
+**Overall MVP progress:** ~8% (6 / 80 tasks complete)
 **Next release target:** v1.0.0 — App Store + Play Store (end of Phase 4)
 **Active blockers:** None
 
@@ -16,7 +16,7 @@
 | Phase | Focus | Status | Progress |
 |---|---|---|---|
 | **0** | Project bootstrap (pre-MVP scaffold) | ✅ Complete | 100% |
-| **1** | Foundation — deps, theme, locales, skeleton | 🟡 In progress | ~20% |
+| **1** | Foundation — deps, theme, locales, skeleton | 🟡 In progress | ~25% |
 | **2** | Core gameplay — playable round end-to-end | ⏳ Not started | 0% |
 | **3** | Feel & polish — animation, audio, haptics, persistence, a11y | ⏳ Not started | 0% |
 | **4** | Release — EAS, store assets, submission | ⏳ Not started | 0% |
@@ -46,6 +46,8 @@ Pre-MVP setup that happened before the formal phase plan was written. Captured h
 
 ### Accomplished
 
+- [x] **T1.1.1** — `app-example/` directory deleted.
+- [x] **T1.1.2** — `app-example` entry removed from `.gitignore`.
 - [x] **T1.1.4** — `tsconfig.json` path alias `@/*` verified working.
 - [x] **T1.7.1 (partial)** — Empty placeholder folders for `src/features/` and `src/shared/store|context|hooks|components` exist with `.gitkeep`.
 
@@ -53,13 +55,12 @@ Pre-MVP setup that happened before the formal phase plan was written. Captured h
 
 These should be tackled first to unblock Phase 2:
 
-1. **T1.1.1** — Delete `app-example/` directory.
-2. **T1.2.1–T1.2.7** — Install runtime deps: `zustand`, `@react-native-async-storage/async-storage`, `expo-audio`, `expo-haptics`, `react-native-reanimated`, `zod`, `uuid` + `react-native-get-random-values`.
-3. **T1.3.1–T1.3.5** — Install dev deps and add `jest-expo` test runner.
-4. **T1.4.1–T1.4.3** — Create `src/shared/constants/theme.ts` with color/spacing/radii/type tokens.
-5. **T1.5.1–T1.5.4** — Expand `en.json` and `fr.json` to cover all MVP UI copy; add `i18n.d.ts` for typed `t()` keys.
-6. **T1.6.1–T1.6.4** — Create `Button`, `ScreenContainer`, `SegmentedControl` shared components.
-7. **T1.7.1–T1.7.3** — Stub the `src/features/game/` tree (components, hooks, lib, store, types).
+1. **T1.2.1–T1.2.7** — Install runtime deps: `zustand`, `@react-native-async-storage/async-storage`, `expo-audio`, `expo-haptics`, `react-native-reanimated`, `zod`, `uuid` + `react-native-get-random-values`.
+2. **T1.3.1–T1.3.5** — Install dev deps and add `jest-expo` test runner.
+3. **T1.4.1–T1.4.3** — Create `src/shared/constants/theme.ts` with color/spacing/radii/type tokens.
+4. **T1.5.1–T1.5.4** — Expand `en.json` and `fr.json` to cover all MVP UI copy; add `i18n.d.ts` for typed `t()` keys.
+5. **T1.6.1–T1.6.4** — Create `Button`, `ScreenContainer`, `SegmentedControl` shared components.
+6. **T1.7.1–T1.7.3** — Stub the `src/features/game/` tree (components, hooks, lib, store, types).
 
 ### Definition of Done (Phase 1)
 

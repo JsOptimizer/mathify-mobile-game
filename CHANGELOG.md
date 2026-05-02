@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 
 ### Added
 
+- **2026-05-02** — Installed `zod ^4.4.1` for runtime schema validation at persistence boundaries (completes T1.2.6).
 - **2026-05-02** — `react-native-reanimated ~4.1.1` confirmed present (SDK 54 default template); Expo SDK 54 + New Architecture handles reanimated v4 automatically — no Babel plugin entry required (completes T1.2.5).
 - **2026-05-02** — `expo-haptics ~15.0.8` confirmed present (SDK 54 default template); no additional install required (completes T1.2.4).
 - **2026-05-02** — Installed `expo-audio ~1.1.1` (SDK 54 compatible) and registered its plugin in `app.json` (completes T1.2.3).

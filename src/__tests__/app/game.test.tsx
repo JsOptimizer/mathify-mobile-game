@@ -10,6 +10,16 @@ jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (k: string) => k }),
 }));
 
+jest.mock('@/src/shared/config/i18n', () => ({
+  __esModule: true,
+  default: { changeLanguage: jest.fn() },
+}));
+
+jest.mock('expo-haptics', () => ({
+  notificationAsync: jest.fn(),
+  NotificationFeedbackType: { Success: 'Success', Error: 'Error' },
+}));
+
 import React from 'react';
 import { act, render } from '@testing-library/react-native';
 import Game from '@/src/app/game';

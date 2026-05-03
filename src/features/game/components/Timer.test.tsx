@@ -18,23 +18,23 @@ describe('Timer', () => {
     useGameStore.getState().reset();
   });
 
-  it('renders timeRemaining from the store with an "s" suffix', () => {
+  it('renders timeRemaining from the store as mm:ss', () => {
     useGameStore.setState({ timeRemaining: 42 });
     render(<Timer />);
-    expect(screen.getByText('42s')).toBeTruthy();
+    expect(screen.getByText('00:42')).toBeTruthy();
   });
 
   it('applies the danger color class when timeRemaining <= 3 (urgent)', () => {
     useGameStore.setState({ timeRemaining: 2 });
     render(<Timer />);
-    const urgent = screen.getByText('2s');
+    const urgent = screen.getByText('00:02');
     expect(urgent.props.className).toContain('text-danger');
 
     act(() => {
       useGameStore.setState({ timeRemaining: 30 });
     });
     render(<Timer />);
-    const calm = screen.getByText('30s');
+    const calm = screen.getByText('00:30');
     expect(calm.props.className).not.toContain('text-danger');
     expect(calm.props.className).toContain('text-text-primary');
   });

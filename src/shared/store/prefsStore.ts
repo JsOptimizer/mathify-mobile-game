@@ -1,9 +1,9 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { z } from 'zod';
 import i18n from '@/src/shared/config/i18n';
 import type { Difficulty } from '@/src/features/game/types';
+import { safeAsyncStorage } from './safeAsyncStorage';
 
 const PrefsSchema = z.object({
   language: z.enum(['en', 'fr']),
@@ -70,7 +70,7 @@ export const usePrefsStore = create<PrefsStore>()(
     }),
     {
       name: STORAGE_KEY,
-      storage: createJSONStorage(() => AsyncStorage),
+      storage: createJSONStorage(() => safeAsyncStorage),
       merge: (persistedState, currentState) => {
         const parsed = PrefsSchema.safeParse(persistedState);
         if (!parsed.success) {

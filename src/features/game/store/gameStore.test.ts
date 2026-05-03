@@ -88,5 +88,33 @@ describe('useGameStore', () => {
     expect(s.lastFeedback).toBeNull();
     expect(s.currentQuestion).toBeNull();
     expect(s.difficulty).toBe('easy');
+    expect(s.problemsAnswered).toBe(0);
+    expect(s.correctAnswered).toBe(0);
+  });
+
+  it('tracks problemsAnswered + correctAnswered across mixed answers', () => {
+    useGameStore.getState().start('easy');
+    expect(useGameStore.getState().problemsAnswered).toBe(0);
+    expect(useGameStore.getState().correctAnswered).toBe(0);
+
+    let q = useGameStore.getState().currentQuestion!;
+    useGameStore.getState().answer(q.correct_answer);
+    q = useGameStore.getState().currentQuestion!;
+    useGameStore.getState().answer(q.correct_answer + 999);
+    q = useGameStore.getState().currentQuestion!;
+    useGameStore.getState().answer(q.correct_answer);
+
+    const s = useGameStore.getState();
+    expect(s.problemsAnswered).toBe(3);
+    expect(s.correctAnswered).toBe(2);
+  });
+
+  it('start() resets the per-round counters', () => {
+    useGameStore.getState().start('easy');
+    useGameStore.setState({ problemsAnswered: 5, correctAnswered: 4 });
+    useGameStore.getState().start('medium');
+    const s = useGameStore.getState();
+    expect(s.problemsAnswered).toBe(0);
+    expect(s.correctAnswered).toBe(0);
   });
 });

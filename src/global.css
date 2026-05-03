@@ -2,14 +2,18 @@
 @import 'uniwind';
 
 @theme {
-  --color-bg: #FFFFFF;
-  --color-surface: #F5F7FA;
-  --color-primary: #1A5CFF;
-  --color-success: #1B8A3E;
-  --color-danger: #D42B2B;
-  --color-text-primary: #111827;
-  --color-text-muted: #6B7280;
-  --color-border: #E5E7EB;
+  --color-bg: #0B1126;
+  --color-bg-deep: #060A1A;
+  --color-surface: rgba(255, 255, 255, 0.04);
+  --color-surface-strong: rgba(255, 255, 255, 0.08);
+  --color-primary: #5B7FFF;
+  --color-primary-soft: rgba(91, 127, 255, 0.18);
+  --color-accent: #A06BFF;
+  --color-success: #22C55E;
+  --color-danger: #EF4444;
+  --color-text-primary: #FFFFFF;
+  --color-text-muted: #7B8294;
+  --color-border: rgba(255, 255, 255, 0.08);
 
   --spacing-xs: 4px;
   --spacing-sm: 8px;
@@ -21,11 +25,20 @@
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 20px;
+  --radius-xl: 28px;
   --radius-pill: 9999px;
 
-  --text-display: 48px;
-  --text-display--line-height: 56px;
-  --text-display--font-weight: 800;
+  --font-display: 'Inter_900Black_Italic';
+  --font-mega: 'Anton_400Regular';
+  --font-body: 'Inter_500Medium';
+  --font-body-bold: 'Inter_700Bold';
+
+  --text-mega: 96px;
+  --text-mega--line-height: 100px;
+  --text-mega--font-weight: 900;
+  --text-display: 64px;
+  --text-display--line-height: 68px;
+  --text-display--font-weight: 900;
   --text-h1: 32px;
   --text-h1--line-height: 40px;
   --text-h1--font-weight: 700;
@@ -36,4 +49,5 @@
   --text-body--line-height: 24px;
   --text-caption: 12px;
   --text-caption--line-height: 18px;
+  --text-caption--letter-spacing: 1.5px;
 }

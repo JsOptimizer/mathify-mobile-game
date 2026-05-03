@@ -11,6 +11,8 @@ export interface GameStoreState {
   streak: number;
   lastFeedback: Feedback | null;
   difficulty: Difficulty;
+  problemsAnswered: number;
+  correctAnswered: number;
 }
 
 export interface GameStoreActions {
@@ -32,6 +34,8 @@ const DEFAULT_STATE: GameStoreState = {
   streak: 0,
   lastFeedback: null,
   difficulty: 'easy',
+  problemsAnswered: 0,
+  correctAnswered: 0,
 };
 
 export const useGameStore = create<GameStore>((set) => ({
@@ -46,6 +50,8 @@ export const useGameStore = create<GameStore>((set) => ({
       lastFeedback: null,
       difficulty,
       currentQuestion: generateQuestion(difficulty),
+      problemsAnswered: 0,
+      correctAnswered: 0,
     });
   },
 
@@ -54,6 +60,7 @@ export const useGameStore = create<GameStore>((set) => ({
       if (state.gameState !== 'playing' || state.currentQuestion === null) {
         return {};
       }
+      const isCorrect = choice === state.currentQuestion.correct_answer;
       const next = applyAnswer(
         {
           score: state.score,
@@ -69,6 +76,8 @@ export const useGameStore = create<GameStore>((set) => ({
         streak: next.streak,
         lastFeedback: next.lastFeedback,
         currentQuestion: generateQuestion(state.difficulty),
+        problemsAnswered: state.problemsAnswered + 1,
+        correctAnswered: state.correctAnswered + (isCorrect ? 1 : 0),
       };
     });
   },

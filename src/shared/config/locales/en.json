@@ -8,8 +8,11 @@
   "home": {
     "title": "Mathify",
     "subtitle": "How fast can you go?",
+    "tagline": "Elevate your mental agility.",
     "start": "Start",
+    "playNow": "Play Now",
     "bestScore": "Best: {{score}}",
+    "highScore": "High Score",
     "language": "Language",
     "sound": "Sound",
     "haptics": "Haptics"
@@ -22,9 +25,15 @@
   },
   "gameOver": {
     "title": "Game Over",
-    "finalScore": "Your score: {{score}}",
-    "newBest": "New best!",
+    "wellDone": "Well Done",
+    "sessionFinalized": "Session Finalized",
+    "finalScore": "Final Score",
+    "pts": "PTS",
+    "accuracy": "Accuracy",
+    "problems": "Problems",
+    "newBest": "New Best!",
     "replay": "Play Again",
+    "playAgain": "Play Again",
     "home": "Home"
   },
   "difficulty": {
@@ -33,7 +42,7 @@
     "hard": "Hard"
   },
   "languages": {
-    "en": "English",
-    "fr": "Français"
+    "en": "EN",
+    "fr": "FR"
   }
 }

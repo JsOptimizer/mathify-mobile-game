@@ -70,7 +70,7 @@ Mathify's MVP delivers one polished, addictive core loop — answer math questio
 - In-round difficulty auto-scaling (questions get harder as score climbs).
 - Streak bonuses and combo multipliers.
 - Daily challenge (deterministic seed per day).
-- Light/dark theme variants and visual themes (e.g., space, jungle).
+- Light theme variant and additional visual themes (e.g., space, jungle). v1.0.0 ships dark only.
 - Sentry crash reporting.
 
 #### Future (Nice to Have)

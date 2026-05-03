@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Animated, { useAnimatedStyle, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
 import { useGameStore } from '@/src/features/game/store/gameStore';
 
-const PEAK_OPACITY = 0.4;
+const PEAK_OPACITY = 0.25;
 const FLASH_IN_MS = 60;
 const FLASH_OUT_MS = 200;
 

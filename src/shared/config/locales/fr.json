@@ -8,8 +8,11 @@
   "home": {
     "title": "Mathify",
     "subtitle": "Jusqu'où peux-tu aller ?",
+    "tagline": "Aiguisez votre agilité mentale.",
     "start": "Démarrer",
+    "playNow": "Jouer",
     "bestScore": "Meilleur : {{score}}",
+    "highScore": "Meilleur Score",
     "language": "Langue",
     "sound": "Son",
     "haptics": "Haptique"
@@ -22,9 +25,15 @@
   },
   "gameOver": {
     "title": "Partie terminée",
-    "finalScore": "Ton score : {{score}}",
-    "newBest": "Nouveau record !",
+    "wellDone": "Bien Joué",
+    "sessionFinalized": "Session Terminée",
+    "finalScore": "Score Final",
+    "pts": "PTS",
+    "accuracy": "Précision",
+    "problems": "Problèmes",
+    "newBest": "Nouveau Record !",
     "replay": "Rejouer",
+    "playAgain": "Rejouer",
     "home": "Accueil"
   },
   "difficulty": {
@@ -33,7 +42,7 @@
     "hard": "Difficile"
   },
   "languages": {
-    "en": "English",
-    "fr": "Français"
+    "en": "EN",
+    "fr": "FR"
   }
 }

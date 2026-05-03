@@ -1,15 +1,15 @@
+import { useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
-import { useRouter } from 'expo-router';
-import { ScreenContainer, FlashOverlay } from '@/src/shared/components';
-import { useGameStore } from '@/src/features/game/store/gameStore';
+import { AnswerButton } from '@/src/features/game/components/AnswerButton';
+import { QuestionCard } from '@/src/features/game/components/QuestionCard';
+import { ScoreBadge } from '@/src/features/game/components/ScoreBadge';
+import { Timer } from '@/src/features/game/components/Timer';
 import { useGameLoop } from '@/src/features/game/hooks/useGameLoop';
+import { useGameStore } from '@/src/features/game/store/gameStore';
+import { FlashOverlay, ScreenContainer } from '@/src/shared/components';
 import { useHaptics } from '@/src/shared/hooks/useHaptics';
 import { useSound } from '@/src/shared/hooks/useSound';
-import { Timer } from '@/src/features/game/components/Timer';
-import { ScoreBadge } from '@/src/features/game/components/ScoreBadge';
-import { QuestionCard } from '@/src/features/game/components/QuestionCard';
-import { AnswerButton } from '@/src/features/game/components/AnswerButton';
 
 export default function Game() {
   const router = useRouter();
@@ -38,20 +38,39 @@ export default function Game() {
     }
   }, [lastFeedback, currentQuestion?.id, haptics, sound]);
 
+  const choices = currentQuestion?.answer_choices ?? [];
+  const rows: number[][] = [];
+  for (let i = 0; i < choices.length; i += 2) {
+    rows.push(choices.slice(i, i + 2));
+  }
+
   return (
-    <ScreenContainer>
+    <ScreenContainer background="field">
       <FlashOverlay />
-      <View className="flex-1">
-        <View className="flex-row items-center justify-between">
-          <ScoreBadge />
+      <View style={{ flex: 1, justifyContent: 'space-between' }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+            justifyContent: 'space-between',
+          }}
+        >
           <Timer />
+          <ScoreBadge />
         </View>
-        <View className="flex-1 items-center justify-center">
+
+        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
           {currentQuestion && <QuestionCard question={currentQuestion} />}
         </View>
-        <View className="gap-md">
-          {currentQuestion?.answer_choices.map((choice) => (
-            <AnswerButton key={choice} value={choice} onPress={answer} />
+
+        <View style={{ gap: 16 }}>
+          {rows.map((row, idx) => (
+            <View key={idx} style={{ flexDirection: 'row', gap: 16 }}>
+              {row.map((choice) => (
+                <AnswerButton key={choice} value={choice} onPress={answer} />
+              ))}
+              {row.length === 1 ? <View style={{ flex: 1 }} /> : null}
+            </View>
           ))}
         </View>
       </View>

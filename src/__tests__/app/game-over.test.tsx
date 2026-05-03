@@ -74,12 +74,12 @@ describe('GameOver screen', () => {
     expect(screen.getByText('42')).toBeTruthy();
   });
 
-  it('tapping Replay resets, starts with current difficulty, and navigates to /game', () => {
+  it('tapping Play Again resets, starts with current difficulty, and navigates to /game', () => {
     useGameStore.setState({ score: 10, difficulty: 'hard' });
     const resetSpy = jest.spyOn(useGameStore.getState(), 'reset');
     const startSpy = jest.spyOn(useGameStore.getState(), 'start');
     render(<GameOver />);
-    fireEvent.press(screen.getByText('gameOver.replay'));
+    fireEvent.press(screen.getByText('gameOver.playAgain'));
     expect(resetSpy).toHaveBeenCalled();
     expect(startSpy).toHaveBeenCalledWith('hard');
     expect(mockReplace).toHaveBeenCalledWith('/game');

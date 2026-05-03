@@ -4,8 +4,8 @@
 > Source of truth for milestones: [planned.md](planned.md). Source of truth for completed history: [CHANGELOG.md](CHANGELOG.md).
 
 **Last updated:** 2026-05-03
-**Current phase:** Phase 3 — Feel & Polish (in progress, ~71% complete)
-**Overall MVP progress:** 67% (60 / 90 tasks complete)
+**Current phase:** Phase 3 — Feel & Polish (in progress, ~94% complete)
+**Overall MVP progress:** 71% (64 / 90 tasks complete)
 **Next release target:** v1.0.0 — App Store + Play Store (end of Phase 4)
 **Active blockers:** None
 
@@ -18,7 +18,7 @@
 | **0** | Project bootstrap (pre-MVP scaffold) | ✅ Complete | 100% |
 | **1** | Foundation — deps, theme, locales, skeleton, Uniwind/Tailwind styling | 🟡 In progress | ~100% |
 | **2** | Core gameplay — playable round end-to-end | ✅ Complete | 100% |
-| **3** | Feel & polish — animation, audio, haptics, persistence, a11y | 🟡 In progress | ~71% |
+| **3** | Feel & polish — animation, audio, haptics, persistence, a11y | 🟡 In progress | ~94% |
 | **4** | Release — EAS, store assets, submission | ⏳ Not started | 0% |
 
 ---
@@ -165,6 +165,10 @@ Highlights:
 - [x] **T3.2.2** — `useSound` hook (`expo-audio`): preloads three sounds via `useAudioPlayer`; returns `{ playCorrect, playWrong, playTick }` each gated on `prefsStore.sound_enabled`.
 - [x] **T3.2.3** — Wired `useSound` into game screen alongside haptics; correct/wrong play on `lastFeedback` change.
 - [x] **T3.2.4** — `Timer` plays `tick` when `timeRemaining` enters the last 3 seconds.
+- [x] **T3.5.1** — Home: difficulty bound to `prefsStore.last_difficulty` + `setDifficulty` (no more local state).
+- [x] **T3.5.2** — Home: best-score line under the difficulty picker via `t('home.bestScore', { score })`.
+- [x] **T3.5.3** — Home: second `SegmentedControl` for EN/FR language bound to `prefsStore.language` + `setLanguage`.
+- [x] **T3.5.4** — Game Over: on mount captures previous best, calls `recordScore`, renders `gameOver.newBest` badge when score beats previous high.
 
 ---
 

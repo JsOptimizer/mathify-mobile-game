@@ -77,7 +77,7 @@ All component styling is done via **Tailwind utility classes** consumed through 
 ## Conventions and Constraints
 
 - **MVP is client-only**: no backend, no accounts, no analytics, no ads, no IAP, no PII collected. COPPA-aligned. Do not introduce third-party SDKs or network calls without explicit instruction. (Approved styling deps: `uniwind`, `tailwindcss`.)
-- **Light theme only** for v1.0.0; theme tokens (Phase 1 T1.4) should be structured so a dark variant can be added post-ship.
+- **Dark theme only** for v1.0.0; tokens live in `src/global.css` `@theme { … }`. A light variant is post-ship.
 - **Accessibility is in-scope** from Phase 3: tap targets ≥56×56dp, WCAG AA contrast, VoiceOver/TalkBack labels on interactive elements.
 - **Performance targets**: cold start ≤1.5s, JS-thread frame budget ≤16ms (60fps), answer→feedback latency ≤50ms, app size ≤30MB.
 - **Zod is for boundaries only** — runtime validation on AsyncStorage rehydrate and any future external input. Don't wrap internal data in schemas.

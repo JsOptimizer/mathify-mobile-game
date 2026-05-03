@@ -246,6 +246,24 @@ Adopted before Phase 2 to replace `StyleSheet.create` with Tailwind utility clas
 - [ ] **T3.6.4** — Test with iOS Dynamic Type at largest setting — text must not clip; use `numberOfLines` and `adjustsFontSizeToFit` only where appropriate.
 - [ ] **T3.6.5** — Verify color choices pass WCAG AA contrast on `success`, `danger`, `primary`, and `text.primary`.
 
+### 3.7 UI Visual Redesign — Premium Arcade Dark Theme
+
+Adopted mid-Phase-3 in response to user-supplied design mocks. The mocks are **visual direction**, not pixel-perfect targets. Drops the "light theme only for v1.0.0" rule from earlier scope.
+
+- [ ] **T3.7.1** — Install runtime deps for the redesign: `expo-linear-gradient` (gradient CTAs / backgrounds), `@expo-google-fonts/anton` (condensed mega-digits), `@expo-google-fonts/inter` (UI text + italic display weight). Optional: `react-native-svg` only if the home-screen circular `ProgressArc` flourish ships.
+- [ ] **T3.7.2** — Rewrite the `@theme { … }` block in [src/global.css](src/global.css) for a dark palette: `--color-bg #0B1126`, glass `--color-surface rgba(255,255,255,0.04)`, `--color-primary #5B7FFF`, `--color-accent #A06BFF`, success `#22C55E`, danger `#EF4444`, white text, muted `#7B8294`, glass border `rgba(255,255,255,0.08)`, plus new `--radius-xl 28px`, `--text-mega 96px`, `--font-display`, `--font-body`, `--shadow-glow-primary` tokens.
+- [ ] **T3.7.3** — Wire fonts in [src/app/_layout.tsx](src/app/_layout.tsx) via `useFonts({ Anton_400Regular, Inter_500Medium, Inter_700Bold, Inter_900Black_Italic })`; gate the `Stack` render until loaded; set Stack `contentStyle.backgroundColor` to the dark bg.
+- [ ] **T3.7.4** — Sync project docs: drop "Light theme only" from [CLAUDE.md](CLAUDE.md) §Conventions; remove "Light/dark theme variants" from [project-spec.md](project-spec.md) §2.2 Post-MVP; add this §3.7 sub-section + tasks to [planned.md](planned.md); list T3.7.* under Phase 3 "Up next" in [PROJECT_STATUS.md](PROJECT_STATUS.md); append entries to [CHANGELOG.md](CHANGELOG.md).
+- [ ] **T3.7.5** — *(Optional)* Extend [src/features/game/store/gameStore.ts](src/features/game/store/gameStore.ts) with `problemsAnswered` and `correctAnswered` counters (incremented inside `answer`; reset by `reset`/`start`). Add a unit test asserting both counters track correctly across mixed correct/wrong answers. Powers the Game-Over Accuracy/Problems cards; skip if a single Final Score readout is enough.
+- [ ] **T3.7.6** — Create core shared components: `GlassCard.tsx` (translucent rounded-xl card) and `BackgroundField.tsx` (full-screen `LinearGradient` backdrop) under [src/shared/components/](src/shared/components/). Re-export both from [src/shared/components/index.ts](src/shared/components/index.ts).
+- [ ] **T3.7.7** — Update existing shared components for the dark theme: add a `gradient` variant to [Button.tsx](src/shared/components/Button.tsx) (uses `LinearGradient`, `--radius-xl`, optional leading/trailing Ionicons); restyle [SegmentedControl.tsx](src/shared/components/SegmentedControl.tsx) (glass track, glow on selected segment); drop `FlashOverlay.tsx` peak opacity to `0.25`; add a `background?: 'plain' | 'field'` prop to [ScreenContainer.tsx](src/shared/components/ScreenContainer.tsx).
+- [ ] **T3.7.8** — *(Optional flourishes)* Create `IconTile.tsx`, `StatCard.tsx`, `LanguagePill.tsx` under shared, plus `OperatorBadge.tsx` and `StreakDots.tsx` under [src/features/game/components/](src/features/game/components/). Skip any individual flourish that doesn't earn its complexity.
+- [ ] **T3.7.9** — Rebuild [src/app/game.tsx](src/app/game.tsx): HUD-style time + score (no boxes), mega numerals with visible operator, large glass-tile answer choices (≥56dp tap target, in practice ~100dp). Update [Timer.tsx](src/features/game/components/Timer.tsx) to `mm:ss` format and bumped type; update [ScoreBadge.tsx](src/features/game/components/ScoreBadge.tsx) to HUD column; update [QuestionCard.tsx](src/features/game/components/QuestionCard.tsx) for split-operand layout; update [AnswerButton.tsx](src/features/game/components/AnswerButton.tsx) for glass-tile styling.
+- [ ] **T3.7.10** — Rebuild [src/app/game-over.tsx](src/app/game-over.tsx): mega italic final score, conditional "NEW BEST!" pill, gradient CTA "Play Again" button. Add stat row (Accuracy / Problems) only if T3.7.5 ships.
+- [ ] **T3.7.11** — Rebuild [src/app/index.tsx](src/app/index.tsx): italic display wordmark, restyled `SegmentedControl`, high-score readout, EN/FR toggle, gradient CTA "Play Now" button hugging the bottom safe-area edge.
+- [ ] **T3.7.12** — Add new i18n keys to [en.json](src/shared/config/locales/en.json) + [fr.json](src/shared/config/locales/fr.json): `home.tagline`, `home.playNow`, `gameOver.wellDone`, `gameOver.sessionFinalized`, `gameOver.pts`, `gameOver.accuracy`, `gameOver.problems`, `gameOver.playAgain`. Skip any key not actually rendered.
+- [ ] **T3.7.13** — Verification: `npx tsc --noEmit` clean; `pnpm test` green; manual walk on `pnpm ios` of all three screens (EN + FR, all 3 difficulties); contrast check `#FFFFFF` and `#7B8294` on `#0B1126`; tap targets ≥56dp; VoiceOver reads each interactive element.
+
 ### Phase 3 — Definition of Done
 
 - A round looks, sounds, and feels like an arcade game.
@@ -317,8 +335,8 @@ Adopted before Phase 2 to replace `StyleSheet.create` with Tailwind utility clas
 |---|---|---|---|
 | 1 | Foundation | 34 | Clean scaffold with deps installed, tokens defined, and Uniwind/Tailwind styling adopted |
 | 2 | Core gameplay | 17 | End-to-end playable round |
-| 3 | Feel & polish | 17 | Animations, audio, haptics, persistence, i18n, a11y |
+| 3 | Feel & polish | 30 | Animations, audio, haptics, persistence, i18n, a11y, dark-theme UI redesign |
 | 4 | Release | 22 | Live on App Store + Play Store |
-| **Total** | | **90** | **Mathify v1.0.0 shipped** |
+| **Total** | | **103** | **Mathify v1.0.0 shipped** |
 
 > Each task is intentionally small. If a task feels like it needs more than half a day, split it before starting.

@@ -4,8 +4,8 @@
 > Source of truth for milestones: [planned.md](planned.md). Source of truth for completed history: [CHANGELOG.md](CHANGELOG.md).
 
 **Last updated:** 2026-05-03
-**Current phase:** Phase 3 — Feel & Polish (in progress, ~94% complete)
-**Overall MVP progress:** 71% (64 / 90 tasks complete)
+**Current phase:** Phase 3 — Feel & Polish (in progress, ~93% complete)
+**Overall MVP progress:** 75% (77 / 103 tasks complete)
 **Next release target:** v1.0.0 — App Store + Play Store (end of Phase 4)
 **Active blockers:** None
 
@@ -18,7 +18,7 @@
 | **0** | Project bootstrap (pre-MVP scaffold) | ✅ Complete | 100% |
 | **1** | Foundation — deps, theme, locales, skeleton, Uniwind/Tailwind styling | 🟡 In progress | ~100% |
 | **2** | Core gameplay — playable round end-to-end | ✅ Complete | 100% |
-| **3** | Feel & polish — animation, audio, haptics, persistence, a11y | 🟡 In progress | ~94% |
+| **3** | Feel & polish — animation, audio, haptics, persistence, a11y, dark UI redesign | 🟡 In progress | ~93% |
 | **4** | Release — EAS, store assets, submission | ⏳ Not started | 0% |
 
 ---
@@ -169,6 +169,22 @@ Highlights:
 - [x] **T3.5.2** — Home: best-score line under the difficulty picker via `t('home.bestScore', { score })`.
 - [x] **T3.5.3** — Home: second `SegmentedControl` for EN/FR language bound to `prefsStore.language` + `setLanguage`.
 - [x] **T3.5.4** — Game Over: on mount captures previous best, calls `recordScore`, renders `gameOver.newBest` badge when score beats previous high.
+- [x] **T3.7.1** — Installed `expo-linear-gradient ~15.0.8`, `@expo-google-fonts/anton ^0.4.2`, `@expo-google-fonts/inter ^0.4.2`. (`react-native-svg` deferred — only needed if home-screen `ProgressArc` ships.)
+- [x] **T3.7.2** — Rewrote `src/global.css` `@theme { … }` block for the dark arcade palette (deep navy bg, glass surfaces, blue/purple gradient accents, white text on muted captions, new `--radius-xl`, `--text-mega`, font tokens).
+- [x] **T3.7.3** — Wired fonts in `src/app/_layout.tsx` via `useFonts({ Anton_400Regular, Inter_500Medium, Inter_700Bold, Inter_900Black_Italic })` using direct `.ttf` requires; Stack `contentStyle.backgroundColor` set to dark.
+- [x] **T3.7.4** — Synced project docs: dropped "light theme only" from CLAUDE.md + project-spec.md; added §3.7 to planned.md; recomputed denominator in this file (90 → 103) and Phase 3 progress.
+- [x] **T3.7.5** — Added `problemsAnswered` + `correctAnswered` counters to `gameStore`. Two new unit tests cover mixed-answer tracking and counter reset on `start()`.
+- [x] **T3.7.6** — Created `GlassCard` and `BackgroundField` shared components.
+- [x] **T3.7.7** — Updated shared components: gradient `Button` variant (LinearGradient blue→purple, `--radius-xl`, leading/trailing Ionicons); `SegmentedControl` got a `pill` variant + dark restyle; `FlashOverlay` peak opacity 0.4 → 0.25; `ScreenContainer.background?: 'plain' | 'field'`.
+- [x] **T3.7.8** — Created flourish components: `IconTile`, `StatCard` under shared; `OperatorBadge` under game feature. `LanguagePill` deferred (covered by `SegmentedControl` pill variant); `StreakDots` deferred (not earning its complexity yet).
+- [x] **T3.7.9** — Rebuilt `src/app/game.tsx`: HUD-style time/score, mega numerals + `OperatorBadge`, 2-up glass-tile answer rows. Updated `Timer` to mm:ss + clock-icon HUD, `ScoreBadge` to HUD column with star, `QuestionCard` to split-operand layout, `AnswerButton` to glass-tile.
+- [x] **T3.7.10** — Rebuilt `src/app/game-over.tsx`: trophy `IconTile`, conditional NEW BEST pill, "SESSION FINALIZED" rule, italic "WELL DONE" headline, GlassCard final score with PTS suffix, Accuracy/Problems StatCards, gradient PLAY AGAIN CTA + ghost Home.
+- [x] **T3.7.11** — Rebuilt `src/app/index.tsx`: hamburger + EN/FR pill top bar, calculator `IconTile`, italic display "Mathify." wordmark with primary period, tagline, GlassCard with high-score caption + Anton-styled number + difficulty `SegmentedControl` (pill variant), gradient PLAY NOW CTA at bottom.
+- [x] **T3.7.12** — Added new i18n keys to en.json + fr.json: `home.tagline`, `home.playNow`, `home.highScore`, `gameOver.wellDone`, `gameOver.sessionFinalized`, `gameOver.pts`, `gameOver.accuracy`, `gameOver.problems`, `gameOver.playAgain`. `languages.en/fr` shortened to "EN"/"FR" for the pill.
+
+### Up next
+
+- [ ] **T3.7.13** — Final verification: `npx tsc --noEmit` ✓ clean. `pnpm test` ✓ 69 passed / 0 failed. **Pending:** manual `pnpm ios` walk through all three screens (EN + FR, all difficulties); contrast spot-check on muted text; VoiceOver sweep. *(Note: if Metro is already running when deps were added, restart it with `--clear` so the bundler picks up the new `@expo-google-fonts/*` packages.)*
 
 ---
 

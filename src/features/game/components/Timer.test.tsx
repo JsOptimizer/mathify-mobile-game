@@ -1,5 +1,13 @@
 jest.mock('uuid', () => ({ v4: () => 'test-uuid' }));
 
+jest.mock('expo-audio', () => ({
+  useAudioPlayer: jest.fn(() => ({ seekTo: jest.fn(), play: jest.fn() })),
+}));
+
+jest.mock('@/src/features/game/audio/correct.mp3', () => 1, { virtual: true });
+jest.mock('@/src/features/game/audio/wrong.mp3', () => 2, { virtual: true });
+jest.mock('@/src/features/game/audio/tick.mp3', () => 3, { virtual: true });
+
 import React from 'react';
 import { act, render, screen } from '@testing-library/react-native';
 import { Timer } from '@/src/features/game/components/Timer';

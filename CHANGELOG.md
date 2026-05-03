@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 
 ### Added
 
+- **2026-05-03** — Audio feedback wired up: `useSound` hook (`expo-audio`) plays correct/wrong on each answer and `tick` for the last 3 seconds of the timer; gated on `prefsStore.sound_enabled`. Placeholder SFX MP3s generated with `ffmpeg` (sine waves with fade-out) at `src/features/game/audio/` — flagged for pre-launch replacement with real assets (completes T3.2.1, T3.2.2, T3.2.3, T3.2.4).
 - **2026-05-02** — Added `useHaptics` hook (`expo-haptics`): `success`/`error` notifications gated on `prefsStore.haptics_enabled`. Wired into game screen so each answer fires the matching haptic alongside the visual flash (completes T3.3.1, T3.3.2).
 - **2026-05-02** — Added `FlashOverlay` (Reanimated v4): full-screen non-interactive green/red flash on correct/wrong answers (60ms in, 200ms out at 0.4 peak opacity). Mounted once at the top of the game screen. Effect re-fires across same-value `lastFeedback` updates by also depending on `currentQuestion?.id` (completes T3.1.1, T3.1.2).
 - **2026-05-02** — Created persisted `prefsStore` at `src/shared/store/prefsStore.ts`: Zustand + `persist` middleware over AsyncStorage; Zod-validated rehydrate with `DEFAULT_PREFS` fallback; actions for language (also calls `i18next.changeLanguage`), difficulty, sound, haptics, and per-difficulty high-score recording (completes T3.4.1, T3.4.2, T3.4.3, T3.4.4).

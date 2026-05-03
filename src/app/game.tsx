@@ -5,6 +5,7 @@ import { ScreenContainer, FlashOverlay } from '@/src/shared/components';
 import { useGameStore } from '@/src/features/game/store/gameStore';
 import { useGameLoop } from '@/src/features/game/hooks/useGameLoop';
 import { useHaptics } from '@/src/shared/hooks/useHaptics';
+import { useSound } from '@/src/shared/hooks/useSound';
 import { Timer } from '@/src/features/game/components/Timer';
 import { ScoreBadge } from '@/src/features/game/components/ScoreBadge';
 import { QuestionCard } from '@/src/features/game/components/QuestionCard';
@@ -14,6 +15,7 @@ export default function Game() {
   const router = useRouter();
   useGameLoop();
   const haptics = useHaptics();
+  const sound = useSound();
 
   const gameState = useGameStore((s) => s.gameState);
   const currentQuestion = useGameStore((s) => s.currentQuestion);
@@ -27,9 +29,14 @@ export default function Game() {
   }, [gameState, router]);
 
   useEffect(() => {
-    if (lastFeedback === 'correct') haptics.success();
-    else if (lastFeedback === 'wrong') haptics.error();
-  }, [lastFeedback, currentQuestion?.id, haptics]);
+    if (lastFeedback === 'correct') {
+      haptics.success();
+      sound.playCorrect();
+    } else if (lastFeedback === 'wrong') {
+      haptics.error();
+      sound.playWrong();
+    }
+  }, [lastFeedback, currentQuestion?.id, haptics, sound]);
 
   return (
     <ScreenContainer>

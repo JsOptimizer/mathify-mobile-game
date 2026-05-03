@@ -20,6 +20,14 @@ jest.mock('expo-haptics', () => ({
   NotificationFeedbackType: { Success: 'Success', Error: 'Error' },
 }));
 
+jest.mock('expo-audio', () => ({
+  useAudioPlayer: jest.fn(() => ({ seekTo: jest.fn(), play: jest.fn() })),
+}));
+
+jest.mock('@/src/features/game/audio/correct.mp3', () => 1, { virtual: true });
+jest.mock('@/src/features/game/audio/wrong.mp3', () => 2, { virtual: true });
+jest.mock('@/src/features/game/audio/tick.mp3', () => 3, { virtual: true });
+
 import React from 'react';
 import { act, render } from '@testing-library/react-native';
 import Game from '@/src/app/game';

@@ -3,9 +3,9 @@
 > Live snapshot of where the project stands against the MVP plan.
 > Source of truth for milestones: [planned.md](planned.md). Source of truth for completed history: [CHANGELOG.md](CHANGELOG.md).
 
-**Last updated:** 2026-05-02
-**Current phase:** Phase 3 — Feel & Polish (in progress, ~47% complete)
-**Overall MVP progress:** 62% (56 / 90 tasks complete)
+**Last updated:** 2026-05-03
+**Current phase:** Phase 3 — Feel & Polish (in progress, ~71% complete)
+**Overall MVP progress:** 67% (60 / 90 tasks complete)
 **Next release target:** v1.0.0 — App Store + Play Store (end of Phase 4)
 **Active blockers:** None
 
@@ -18,7 +18,7 @@
 | **0** | Project bootstrap (pre-MVP scaffold) | ✅ Complete | 100% |
 | **1** | Foundation — deps, theme, locales, skeleton, Uniwind/Tailwind styling | 🟡 In progress | ~100% |
 | **2** | Core gameplay — playable round end-to-end | ✅ Complete | 100% |
-| **3** | Feel & polish — animation, audio, haptics, persistence, a11y | 🟡 In progress | ~47% |
+| **3** | Feel & polish — animation, audio, haptics, persistence, a11y | 🟡 In progress | ~71% |
 | **4** | Release — EAS, store assets, submission | ⏳ Not started | 0% |
 
 ---
@@ -161,6 +161,10 @@ Highlights:
 - [x] **T3.1.2** — `FlashOverlay` mounted once at the top of `src/app/game.tsx`.
 - [x] **T3.3.1** — `useHaptics` hook returns `{ success, error }`; both no-op when `prefsStore.haptics_enabled` is false.
 - [x] **T3.3.2** — Wired into `src/app/game.tsx` via `useEffect` on `[lastFeedback, currentQuestion?.id]`; fires success on correct, error on wrong.
+- [x] **T3.2.1** — Placeholder SFX MP3s generated with `ffmpeg` at `src/features/game/audio/` (`correct.mp3` 880 Hz, `wrong.mp3` 220 Hz, `tick.mp3` 660 Hz). Marked for pre-launch swap with real assets.
+- [x] **T3.2.2** — `useSound` hook (`expo-audio`): preloads three sounds via `useAudioPlayer`; returns `{ playCorrect, playWrong, playTick }` each gated on `prefsStore.sound_enabled`.
+- [x] **T3.2.3** — Wired `useSound` into game screen alongside haptics; correct/wrong play on `lastFeedback` change.
+- [x] **T3.2.4** — `Timer` plays `tick` when `timeRemaining` enters the last 3 seconds.
 
 ---
 

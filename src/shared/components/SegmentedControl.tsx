@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Pressable, Text } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 export interface SegmentedControlOption<T extends string> {
   label: string;
@@ -11,6 +11,7 @@ export interface SegmentedControlProps<T extends string> {
   value: T;
   onChange: (value: T) => void;
   accessibilityLabel?: string;
+  variant?: 'segmented' | 'pill';
 }
 
 export function SegmentedControl<T extends string>({
@@ -18,16 +19,20 @@ export function SegmentedControl<T extends string>({
   value,
   onChange,
   accessibilityLabel = 'Segmented control',
+  variant = 'segmented',
 }: SegmentedControlProps<T>) {
+  const isPill = variant === 'pill';
   return (
     <View
-      className="flex-row bg-surface rounded-md border border-border overflow-hidden min-h-[56px]"
+      className={[
+        'flex-row bg-surface border border-border min-h-[56px] p-xs',
+        isPill ? 'rounded-pill' : 'rounded-xl',
+      ].join(' ')}
       accessibilityRole="tablist"
       accessibilityLabel={accessibilityLabel}
     >
-      {options.map((option, index) => {
+      {options.map((option) => {
         const isSelected = option.value === value;
-        const isLast = index === options.length - 1;
         return (
           <Pressable
             key={option.value}
@@ -36,16 +41,15 @@ export function SegmentedControl<T extends string>({
             accessibilityLabel={option.label}
             accessibilityState={{ selected: isSelected }}
             className={[
-              'flex-1 items-center justify-center py-sm px-sm min-h-[56px]',
-              !isLast && 'border-r border-border',
-              isSelected && 'bg-primary',
-              !isSelected && 'active:bg-border',
-            ].filter(Boolean).join(' ')}
+              'flex-1 items-center justify-center min-h-2xl px-sm',
+              isPill ? 'rounded-pill' : 'rounded-lg',
+              isSelected ? 'bg-primary' : 'active:bg-surface-strong',
+            ].join(' ')}
           >
             <Text
               className={[
-                'text-body font-semibold text-center',
-                isSelected ? 'text-white' : 'text-text-primary',
+                'text-body font-bold text-center tracking-wide',
+                isSelected ? 'text-white' : 'text-text-muted',
               ].join(' ')}
               numberOfLines={1}
             >

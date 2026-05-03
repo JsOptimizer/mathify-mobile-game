@@ -72,13 +72,13 @@ describe('Home screen', () => {
 
   it('renders without crashing', () => {
     render(<Home />);
-    expect(screen.getByText('home.title')).toBeTruthy();
+    expect(screen.getByText(/home\.title/)).toBeTruthy();
   });
 
-  it('tapping Start calls store.start and router.push("/game")', () => {
+  it('tapping Play Now calls store.start and router.push("/game")', () => {
     const startSpy = jest.spyOn(useGameStore.getState(), 'start');
     render(<Home />);
-    fireEvent.press(screen.getByText('home.start'));
+    fireEvent.press(screen.getByText('home.playNow'));
     expect(startSpy).toHaveBeenCalledWith('easy');
     expect(mockPush).toHaveBeenCalledWith('/game');
   });
@@ -90,13 +90,14 @@ describe('Home screen', () => {
     expect(mockChangeLanguage).toHaveBeenCalledWith('fr');
   });
 
-  it('renders the best score for the current difficulty', () => {
+  it('renders the high score for the current difficulty', () => {
     usePrefsStore.setState({
       ...DEFAULT_PREFS,
       last_difficulty: 'easy',
       high_score: { easy: 7, medium: 0, hard: 0 },
     });
     render(<Home />);
-    expect(screen.getByText(/home\.bestScore.*7/)).toBeTruthy();
+    expect(screen.getByText('home.highScore')).toBeTruthy();
+    expect(screen.getByText('7')).toBeTruthy();
   });
 });
